@@ -30,7 +30,7 @@ class _LoginEmailState extends State<LoginEmail> {
                   Image.asset("assets/images/esewa.png", height: 30),
                   SizedBox(width: 5),
                   Text(
-                    "Sewa",
+                    "Sewa2",
                     style: TextStyle(fontSize: 45, color: Colors.white),
                   ),
                   Spacer(),
@@ -90,7 +90,7 @@ class _LoginEmailState extends State<LoginEmail> {
                         children: [
                           TextButton(
                             onPressed: () {
-                              Navigator.pushReplacement(
+                              Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => LoginMobile(),

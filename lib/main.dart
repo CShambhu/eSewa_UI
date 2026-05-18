@@ -1,4 +1,4 @@
-import 'package:esewa_ui_practice/login_mobile.dart';
+import 'package:esewa_ui_practice/home.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
-      home: const LoginMobile(),
+      home: const Home(),
     );
   }
 }

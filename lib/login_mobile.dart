@@ -12,6 +12,7 @@ class LoginMobile extends StatefulWidget {
 
 class _LoginMobileState extends State<LoginMobile> {
   bool _checkRemember = true;
+  bool _isobscure = true;
   final TextEditingController mobilecontroller = TextEditingController();
   final TextEditingController pincontroller = TextEditingController();
   final _formkey = GlobalKey<FormState>();
@@ -26,7 +27,6 @@ class _LoginMobileState extends State<LoginMobile> {
           children: [
             Padding(
               padding: const EdgeInsets.only(left: 30, top: 60, right: 30),
-
               child: Row(
                 children: [
                   Image.asset("assets/images/esewa.png", height: 30),
@@ -102,7 +102,7 @@ class _LoginMobileState extends State<LoginMobile> {
                           ),
                           TextButton(
                             onPressed: () {
-                              Navigator.pushReplacement(
+                              Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => LoginEmail(),
@@ -168,6 +168,7 @@ class _LoginMobileState extends State<LoginMobile> {
                               ),
                             ),
                             TextFormField(
+                              obscureText: _isobscure,
                               autovalidateMode:
                                   AutovalidateMode.onUserInteractionIfError,
                               controller: pincontroller,
@@ -175,9 +176,13 @@ class _LoginMobileState extends State<LoginMobile> {
                                 filled: true,
                                 fillColor: Color.fromARGB(255, 62, 81, 90),
                                 suffixIcon: IconButton(
-                                  onPressed: () {},
+                                  onPressed: () => setState(() {
+                                    _isobscure = !_isobscure;
+                                  }),
                                   icon: Icon(
-                                    Icons.visibility,
+                                    _isobscure
+                                        ? Icons.visibility
+                                        : Icons.visibility_off,
                                     color: Colors.white,
                                   ),
                                 ),
