@@ -236,7 +236,7 @@ class _LoginMobileState extends State<LoginMobile> {
                               ),
                               onPressed: () {
                                 if (_formkey.currentState!.validate()) {
-                                  Navigator.push(
+                                  Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) => Home(),
