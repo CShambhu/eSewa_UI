@@ -1,10 +1,12 @@
+import 'package:esewa_ui_practice/controller/auth_controller.dart';
 import 'package:esewa_ui_practice/home.dart';
 import 'package:esewa_ui_practice/login_email.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 
 class LoginMobile extends StatefulWidget {
-  const LoginMobile({super.key});
+  LoginMobile({super.key});
 
   @override
   State<LoginMobile> createState() => _LoginMobileState();
@@ -15,7 +17,10 @@ class _LoginMobileState extends State<LoginMobile> {
   bool _isobscure = true;
   final TextEditingController mobilecontroller = TextEditingController();
   final TextEditingController pincontroller = TextEditingController();
+  final TextEditingController emailcontroller = TextEditingController();
   final _formkey = GlobalKey<FormState>();
+
+  final AuthController controller = Get.put(AuthController());
 
   @override
   Widget build(BuildContext context) {
@@ -91,7 +96,9 @@ class _LoginMobileState extends State<LoginMobile> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              controller.showMobileLogin();
+                            },
                             child: Text(
                               "Mobile Number",
                               style: TextStyle(
@@ -102,12 +109,7 @@ class _LoginMobileState extends State<LoginMobile> {
                           ),
                           TextButton(
                             onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => LoginEmail(),
-                                ),
-                              );
+                              controller.showEmailLogin();
                             },
                             child: Text(
                               "Email Address",
@@ -135,30 +137,60 @@ class _LoginMobileState extends State<LoginMobile> {
                                 color: Colors.white,
                               ),
                             ),
-                            TextFormField(
-                              keyboardType: TextInputType.number,
-                              inputFormatters: [
-                                FilteringTextInputFormatter.digitsOnly,
-                              ],
-                              autovalidateMode:
-                                  AutovalidateMode.onUserInteractionIfError,
-                              controller: mobilecontroller,
-                              decoration: InputDecoration(
-                                filled: true,
-                                fillColor: Color.fromARGB(255, 62, 81, 90),
-                                hintText: "Mobile Number",
+                            Obx(() {
+                              if (controller.isMobilelogin.value) {
+                                return TextFormField(
+                                  keyboardType: TextInputType.number,
+                                  inputFormatters: [
+                                    FilteringTextInputFormatter.digitsOnly,
+                                  ],
+                                  autovalidateMode:
+                                      AutovalidateMode.onUserInteractionIfError,
+                                  controller: mobilecontroller,
+                                  decoration: InputDecoration(
+                                    filled: true,
+                                    fillColor: Color.fromARGB(255, 62, 81, 90),
+                                    hintText: "Mobile Number",
 
-                                hintStyle: TextStyle(color: Colors.white),
-                              ),
-                              validator: (value) {
-                                if (value == null ||
-                                    value.isEmpty ||
-                                    value.length != 10) {
-                                  return "invalid number";
-                                }
-                                return null;
-                              },
-                            ),
+                                    hintStyle: TextStyle(color: Colors.white),
+                                  ),
+                                  validator: (value) {
+                                    if (value == null ||
+                                        value.isEmpty ||
+                                        value.length != 10) {
+                                      return "invalid number";
+                                    }
+                                    return null;
+                                  },
+                                );
+                              } else {
+                                return TextFormField(
+                                  controller: emailcontroller,
+                                  keyboardType: TextInputType.emailAddress,
+
+                                  autovalidateMode:
+                                      AutovalidateMode.onUserInteractionIfError,
+                                  decoration: InputDecoration(
+                                    filled: true,
+                                    fillColor: Color.fromARGB(255, 62, 81, 90),
+                                    hintText: "Email Address",
+                                    hintStyle: TextStyle(color: Colors.white),
+                                  ),
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return "please enter email";
+                                    }
+                                    final emailRegex = RegExp(
+                                      r'^[^@]+@[^@]+\.[^@]+',
+                                    );
+                                    if (!emailRegex.hasMatch(value)) {
+                                      return 'Please enter a valid email address';
+                                    }
+                                    return null;
+                                  },
+                                );
+                              }
+                            }),
                             SizedBox(height: 20),
                             Text(
                               "MPIN/Password",

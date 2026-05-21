@@ -326,9 +326,17 @@ class _HomeState extends State<Home> {
                           Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: const [
-                              Icon(
-                                Icons.arrow_forward_ios,
-                                color: Colors.green,
+                              CircleAvatar(
+                                backgroundColor: Color.fromARGB(
+                                  255,
+                                  57,
+                                  75,
+                                  83,
+                                ),
+                                child: Icon(
+                                  Icons.arrow_forward_ios,
+                                  color: Colors.green,
+                                ),
                               ),
                             ],
                           ),
@@ -374,9 +382,17 @@ class _HomeState extends State<Home> {
                           Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: const [
-                              Icon(
-                                Icons.arrow_forward_ios,
-                                color: Colors.green,
+                              CircleAvatar(
+                                backgroundColor: Color.fromARGB(
+                                  255,
+                                  57,
+                                  75,
+                                  83,
+                                ),
+                                child: Icon(
+                                  Icons.arrow_forward_ios,
+                                  color: Colors.green,
+                                ),
                               ),
                             ],
                           ),
@@ -430,9 +446,17 @@ class _HomeState extends State<Home> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Icon(
-                                Icons.arrow_forward_ios,
-                                color: Colors.green,
+                              CircleAvatar(
+                                backgroundColor: Color.fromARGB(
+                                  255,
+                                  57,
+                                  75,
+                                  83,
+                                ),
+                                child: Icon(
+                                  Icons.arrow_forward_ios,
+                                  color: Colors.green,
+                                ),
                               ),
                             ],
                           ),
@@ -481,9 +505,17 @@ class _HomeState extends State<Home> {
                           Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: const [
-                              Icon(
-                                Icons.arrow_forward_ios,
-                                color: Colors.green,
+                              CircleAvatar(
+                                backgroundColor: Color.fromARGB(
+                                  255,
+                                  57,
+                                  75,
+                                  83,
+                                ),
+                                child: Icon(
+                                  Icons.arrow_forward_ios,
+                                  color: Colors.green,
+                                ),
                               ),
                             ],
                           ),
