@@ -1,6 +1,5 @@
 import 'package:esewa_ui_practice/controller/auth_controller.dart';
-import 'package:esewa_ui_practice/home.dart';
-import 'package:esewa_ui_practice/login_email.dart';
+import 'package:esewa_ui_practice/home/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
