@@ -1,13 +1,10 @@
-import 'package:esewa_ui_practice/home/widgets/BalanceCard.dart';
-import 'package:esewa_ui_practice/home/widgets/FinancialCardSection.dart';
-import 'package:esewa_ui_practice/home/widgets/InsuranceCardSection.dart';
-import 'package:esewa_ui_practice/home/widgets/TravelsCardSection.dart';
-import 'package:esewa_ui_practice/home/widgets/UtilityCardSection.dart';
-import 'package:esewa_ui_practice/home/widgets/UtilityWidgets.dart';
+import 'package:esewa_ui_practice/controller/auth_controller.dart';
+import 'package:esewa_ui_practice/home/widgets/HomeContent.dart';
 import 'package:esewa_ui_practice/more/more.dart';
 import 'package:esewa_ui_practice/statement/statement.dart';
 import 'package:esewa_ui_practice/support/support.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
 class Home extends StatefulWidget {
@@ -18,15 +15,16 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  int _selectedIndex = 0;
+  final BottomNavController navController = Get.put(BottomNavController());
+  // int _selectedIndex = 0;
 
-  final List<Widget> _screens = [Home(), Statement(), Support(), More()];
+  final List<Widget> _screens = [HomeContent(), Statement(), Support(), More()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(221, 17, 17, 17),
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 46, 61, 68),
+        backgroundColor: const Color.fromARGB(255, 22, 29, 32),
         title: Row(
           children: [
             Row(
@@ -56,59 +54,62 @@ class _HomeState extends State<Home> {
                   ],
                 ),
                 SizedBox(width: 10),
-                Text("Hi, User", style: TextStyle(color: Colors.white70)),
+                Text(
+                  "Hi, User",
+                  style: TextStyle(fontSize: 20, color: Colors.white70),
+                ),
               ],
             ),
             Spacer(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Icon(Icons.search, color: Colors.white70, size: 35),
-                SizedBox(width: 15),
-                Icon(Icons.notifications, color: Colors.white70, size: 35),
-                SizedBox(width: 15),
-                Icon(Icons.biotech_sharp, color: Colors.white70, size: 35),
+                IconButton(
+                  onPressed: () {},
+                  icon: Icon(Icons.search, color: Colors.white70, size: 32),
+                ),
+                IconButton(
+                  onPressed: () {},
+                  icon: Icon(
+                    Icons.notifications,
+                    color: Colors.white70,
+                    size: 32,
+                  ),
+                ),
+                IconButton(
+                  onPressed: () {},
+                  icon: Icon(Icons.android, color: Colors.white70, size: 32),
+                ),
               ],
             ),
           ],
         ),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Balancecard(),
-            //STACK END
-            SizedBox(height: 50),
-            //Utility & Bill Payment Card
-            UtilityCardSection(),
-            //Travels & Ticketing Card
-            TravelsCardSection(),
-            //Insurance Card
-            InsuranceCardSection(),
-            //Financial Payments Card
-            FinancialCardSection(),
+      body: Obx(() {
+        return _screens[navController.selectedIndex.value];
+      }),
+
+      bottomNavigationBar: Obx(
+        () => GNav(
+          selectedIndex: navController.selectedIndex.value,
+          padding: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
+          // tabBackgroundColor: Colors.grey,
+          backgroundColor: const Color.fromARGB(255, 28, 37, 41),
+          activeColor: Colors.blueGrey,
+          color: Colors.white,
+          style: GnavStyle.oldSchool,
+          textSize: 13,
+
+          onTabChange: (index) {
+            navController.changeIndex(index);
+          },
+          tabs: [
+            GButton(icon: Icons.home, text: "Home"),
+            GButton(icon: Icons.receipt_long, text: "Statement"),
+            GButton(icon: Icons.info_outline, text: "Support"),
+            GButton(icon: Icons.menu, text: "More"),
           ],
         ),
-      ),
-
-      bottomNavigationBar: GNav(
-        selectedIndex: _selectedIndex,
-        padding: EdgeInsets.symmetric(horizontal: 25, vertical: 20),
-        // tabBackgroundColor: Colors.grey,
-        backgroundColor: const Color.fromARGB(255, 46, 61, 68),
-        activeColor: Colors.white,
-        color: Colors.white,
-        onTabChange: (index) {
-          setState(() {
-            _selectedIndex = index;
-          });
-        },
-        tabs: [
-          GButton(icon: Icons.home, text: "Home"),
-          GButton(icon: Icons.receipt_long, text: "Statement"),
-          GButton(icon: Icons.support, text: "Support"),
-          GButton(icon: Icons.more_horiz, text: "More"),
-        ],
       ),
     );
   }

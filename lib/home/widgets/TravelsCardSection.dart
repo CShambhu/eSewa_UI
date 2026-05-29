@@ -9,7 +9,7 @@ class TravelsCardSection extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(left: 5, right: 5),
       child: Card(
-        color: const Color.fromARGB(255, 46, 61, 68),
+        color: const Color.fromARGB(255, 28, 37, 41),
         child: Padding(
           padding: const EdgeInsets.only(left: 12, top: 5, right: 12),
           child: Column(
@@ -27,8 +27,7 @@ class TravelsCardSection extends StatelessWidget {
                 crossAxisCount: 4,
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
-                // mainAxisSpacing: 15,
-                // childAspectRatio: 0.8,
+                crossAxisSpacing: 20,
                 children: [
                   Utility(Icons.flight, "Airlines"),
                   Utility(Icons.flight_takeoff, "Intl Airlines"),

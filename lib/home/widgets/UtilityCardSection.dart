@@ -9,7 +9,7 @@ class UtilityCardSection extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(5),
       child: Card(
-        color: const Color.fromARGB(255, 46, 61, 68),
+        color: const Color.fromARGB(255, 28, 37, 41),
         child: Padding(
           padding: const EdgeInsets.only(left: 12, top: 5, right: 12),
           child: Column(
@@ -28,6 +28,7 @@ class UtilityCardSection extends StatelessWidget {
                 crossAxisCount: 4,
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
+                crossAxisSpacing: 10,
                 children: [
                   Utility(Icons.phone_android, "Topup & Data"),
                   Utility(Icons.electrical_services, "Electricity"),

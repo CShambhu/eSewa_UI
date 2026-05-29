@@ -1,7 +1,16 @@
+import 'package:esewa_ui_practice/controller/auth_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class Balancecard extends StatelessWidget {
+class Balancecard extends StatefulWidget {
   const Balancecard({super.key});
+
+  @override
+  State<Balancecard> createState() => _BalancecardState();
+}
+
+class _BalancecardState extends State<Balancecard> {
+  final HiddenController Bcontroller = Get.put(HiddenController());
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +24,7 @@ class Balancecard extends StatelessWidget {
               bottomLeft: Radius.circular(40),
               bottomRight: Radius.circular(40),
             ),
-            color: const Color.fromARGB(255, 46, 61, 68),
+            color: const Color.fromARGB(255, 28, 37, 41),
           ),
         ),
         //Upper CARD
@@ -32,13 +41,8 @@ class Balancecard extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.only(left: 10, top: 4, bottom: 4),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Row(
-                    children: [
-                      Icon(Icons.wallet, size: 40, color: Colors.white70),
-                    ],
-                  ),
+                  Icon(Icons.wallet, size: 30, color: Colors.white70),
                   Padding(
                     padding: const EdgeInsets.only(left: 10),
                     child: Column(
@@ -54,13 +58,20 @@ class Balancecard extends StatelessWidget {
                               ),
                             ),
                             SizedBox(width: 3),
-                            Text(
-                              "198.25",
-                              style: TextStyle(
-                                fontSize: 20,
-                                color: Colors.white70,
-                              ),
-                            ),
+                            Obx(() {
+                              return SizedBox(
+                                width: 70,
+                                child: Text(
+                                  Bcontroller.isHidden.value
+                                      ? "******"
+                                      : "198.25",
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.white70,
+                                  ),
+                                ),
+                              );
+                            }),
                           ],
                         ),
                         Text(
@@ -70,8 +81,20 @@ class Balancecard extends StatelessWidget {
                       ],
                     ),
                   ),
-                  SizedBox(width: 15),
-                  Icon(Icons.visibility, color: Colors.white70),
+                  // SizedBox(width: 5),
+                  IconButton(
+                    onPressed: () {
+                      Bcontroller.toggleHidden();
+                    },
+                    icon: Obx(() {
+                      return Icon(
+                        Bcontroller.isHidden.value
+                            ? Icons.visibility_off
+                            : Icons.visibility,
+                        color: Colors.white70,
+                      );
+                    }),
+                  ),
 
                   Row(
                     children: [
@@ -80,19 +103,23 @@ class Balancecard extends StatelessWidget {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            "225.55",
-                            style: TextStyle(
-                              fontSize: 20,
-                              color: Colors.white70,
-                            ),
-                          ),
+                          Obx(() {
+                            return Text(
+                              Bcontroller.isHidden.value ? "225.55" : "******",
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.white70,
+                              ),
+                            );
+                          }),
+
                           Text(
                             "Fonepoints",
                             style: TextStyle(color: Colors.white70),
                           ),
                         ],
                       ),
+                      SizedBox(width: 10),
                       Icon(Icons.arrow_forward_ios, color: Colors.white70),
                     ],
                   ),
@@ -104,7 +131,7 @@ class Balancecard extends StatelessWidget {
 
         // Bottom CARD
         Positioned(
-          top: 75,
+          top: 58,
           left: 0,
           right: 0,
           child: Padding(
@@ -116,7 +143,7 @@ class Balancecard extends StatelessWidget {
                   bottomRight: Radius.circular(20),
                 ),
               ),
-              color: const Color.fromARGB(255, 46, 61, 68),
+              color: const Color.fromARGB(255, 28, 37, 41),
               // color: Colors.white,
               child: Padding(
                 padding: const EdgeInsets.only(
@@ -130,7 +157,10 @@ class Balancecard extends StatelessWidget {
                   children: [
                     Column(
                       children: [
-                        Icon(Icons.call_received, color: Colors.white70),
+                        Icon(
+                          Icons.call_received_rounded,
+                          color: Colors.white70,
+                        ),
                         Text(
                           "Load ",
                           style: TextStyle(fontSize: 15, color: Colors.white70),
@@ -143,7 +173,7 @@ class Balancecard extends StatelessWidget {
                     ),
                     Column(
                       children: [
-                        Icon(Icons.call_received, color: Colors.white70),
+                        Icon(Icons.send, color: Colors.white70),
                         Text(
                           "Send ",
                           style: TextStyle(fontSize: 15, color: Colors.white70),
@@ -156,7 +186,7 @@ class Balancecard extends StatelessWidget {
                     ),
                     Column(
                       children: [
-                        Icon(Icons.house, color: Colors.white70),
+                        Icon(Icons.account_balance, color: Colors.white70),
                         Text(
                           "Bank ",
                           style: TextStyle(fontSize: 15, color: Colors.white70),
@@ -169,7 +199,10 @@ class Balancecard extends StatelessWidget {
                     ),
                     Column(
                       children: [
-                        Icon(Icons.games_outlined, color: Colors.white70),
+                        Icon(
+                          Icons.currency_exchange_outlined,
+                          color: Colors.white70,
+                        ),
                         Text(
                           "Remittance ",
                           style: TextStyle(fontSize: 15, color: Colors.white70),

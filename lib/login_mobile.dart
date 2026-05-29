@@ -5,21 +5,22 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 class LoginMobile extends StatefulWidget {
-  LoginMobile({super.key});
+  const LoginMobile({super.key});
 
   @override
   State<LoginMobile> createState() => _LoginMobileState();
 }
 
 class _LoginMobileState extends State<LoginMobile> {
-  bool _checkRemember = true;
-  bool _isobscure = true;
+  final bool _checkRemember = true;
   final TextEditingController mobilecontroller = TextEditingController();
   final TextEditingController pincontroller = TextEditingController();
   final TextEditingController emailcontroller = TextEditingController();
   final _formkey = GlobalKey<FormState>();
 
   final AuthController controller = Get.put(AuthController());
+  final HiddenController Bcontroller = Get.put(HiddenController());
+  final CheckController checkController = Get.put(CheckController());
 
   @override
   Widget build(BuildContext context) {
@@ -198,37 +199,39 @@ class _LoginMobileState extends State<LoginMobile> {
                                 color: Colors.white,
                               ),
                             ),
-                            TextFormField(
-                              obscureText: _isobscure,
-                              autovalidateMode:
-                                  AutovalidateMode.onUserInteractionIfError,
-                              controller: pincontroller,
-                              decoration: InputDecoration(
-                                filled: true,
-                                fillColor: Color.fromARGB(255, 62, 81, 90),
-                                suffixIcon: IconButton(
-                                  onPressed: () => setState(() {
-                                    _isobscure = !_isobscure;
-                                  }),
-                                  icon: Icon(
-                                    _isobscure
-                                        ? Icons.visibility
-                                        : Icons.visibility_off,
-                                    color: Colors.white,
+                            Obx(() {
+                              return TextFormField(
+                                obscureText: Bcontroller.isHidden.value,
+                                autovalidateMode:
+                                    AutovalidateMode.onUserInteractionIfError,
+                                controller: pincontroller,
+                                decoration: InputDecoration(
+                                  filled: true,
+                                  fillColor: Color.fromARGB(255, 62, 81, 90),
+                                  suffixIcon: IconButton(
+                                    onPressed: () {
+                                      Bcontroller.toggleHidden();
+                                    },
+                                    icon: Icon(
+                                      Bcontroller.isHidden.value
+                                          ? Icons.visibility_off
+                                          : Icons.visibility,
+                                      color: Colors.white,
+                                    ),
                                   ),
+                                  hintText: "Your 4-digit MPIN/Password",
+                                  hintStyle: TextStyle(color: Colors.white),
                                 ),
-                                hintText: "Your 4-digit MPIN/Password",
-                                hintStyle: TextStyle(color: Colors.white),
-                              ),
-                              validator: (value) {
-                                if (value == null ||
-                                    value.isEmpty ||
-                                    value.length != 4) {
-                                  return "invalid number";
-                                }
-                                return null;
-                              },
-                            ),
+                                validator: (value) {
+                                  if (value == null ||
+                                      value.isEmpty ||
+                                      value.length != 4) {
+                                    return "invalid number";
+                                  }
+                                  return null;
+                                },
+                              );
+                            }),
                             SizedBox(height: 20),
 
                             Row(
@@ -236,14 +239,14 @@ class _LoginMobileState extends State<LoginMobile> {
                               children: [
                                 Row(
                                   children: [
-                                    Checkbox(
-                                      value: _checkRemember,
-                                      onChanged: (value) {
-                                        setState(() {
-                                          _checkRemember = value!;
-                                        });
-                                      },
-                                    ),
+                                    Obx(() {
+                                      return Checkbox(
+                                        value: checkController.ischecked.value,
+                                        onChanged: (value) {
+                                          checkController.toggleCheck();
+                                        },
+                                      );
+                                    }),
                                     Text(
                                       "Remember me",
                                       style: TextStyle(color: Colors.white),

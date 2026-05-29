@@ -10,7 +10,7 @@ class InsuranceCardSection extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(left: 5, top: 5, bottom: 0, right: 5),
       child: Card(
-        color: const Color.fromARGB(255, 46, 61, 68),
+        color: const Color.fromARGB(255, 28, 37, 41),
         child: Padding(
           padding: const EdgeInsets.only(
             left: 20,
