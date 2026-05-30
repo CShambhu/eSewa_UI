@@ -82,18 +82,28 @@ class _BalancecardState extends State<Balancecard> {
                     ),
                   ),
                   // SizedBox(width: 5),
-                  IconButton(
-                    onPressed: () {
-                      Bcontroller.toggleHidden();
-                    },
-                    icon: Obx(() {
-                      return Icon(
-                        Bcontroller.isHidden.value
-                            ? Icons.visibility_off
-                            : Icons.visibility,
-                        color: Colors.white70,
-                      );
-                    }),
+                  SizedBox(
+                    height: 40,
+                    width: 60,
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Container(height: 40, width: 1, color: Colors.white24),
+                        IconButton(
+                          onPressed: () {
+                            Bcontroller.toggleHidden();
+                          },
+                          icon: Obx(() {
+                            return Icon(
+                              Bcontroller.isHidden.value
+                                  ? Icons.visibility_off
+                                  : Icons.visibility,
+                              color: Colors.white70,
+                            );
+                          }),
+                        ),
+                      ],
+                    ),
                   ),
 
                   Row(
