@@ -17,96 +17,109 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   final BottomNavController navController = Get.put(BottomNavController());
-  // int _selectedIndex = 0;
-  final List<String> _titles = ["", "Statement", "Support", "More"];
+  final List<String> _titles = ["", "Statement", "Help and Support", "More"];
 
   final List<Widget> _screens = [HomeContent(), Statement(), Support(), More()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(221, 17, 17, 17),
-      appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 38, 51, 56),
-        title: Obx(() {
-          int index = navController.selectedIndex.value;
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            floating: false,
+            backgroundColor: const Color.fromARGB(255, 38, 51, 56),
 
-          if (index == 0) {
-            return Row(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+            // expandedHeight: 150,
+            title: Obx(() {
+              int index = navController.selectedIndex.value;
+
+              if (index == 0) {
+                return Row(
                   children: [
-                    Stack(
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        CircleAvatar(
-                          radius: 25,
-                          backgroundColor: Colors.white70,
-                          child: Icon(Icons.person_3_outlined, size: 29),
+                        Stack(
+                          children: [
+                            CircleAvatar(
+                              radius: 25,
+                              backgroundColor: Colors.white70,
+                              child: Icon(Icons.person_3_outlined, size: 29),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 40, top: 29),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(25),
+                                  color: Colors.green,
+                                ),
+                                child: Icon(
+                                  Icons.check,
+                                  size: 18,
+                                  color: Colors.white70,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 40, top: 29),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(25),
-                              color: Colors.green,
-                            ),
-                            child: Icon(
-                              Icons.check,
-                              size: 18,
-                              color: Colors.white70,
-                            ),
+                        SizedBox(width: 10),
+                        Text(
+                          "Hi, User",
+                          style: TextStyle(fontSize: 20, color: Colors.white70),
+                        ),
+                      ],
+                    ),
+                    Spacer(),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        IconButton(
+                          onPressed: () {
+                            Get.to(Search());
+                          },
+                          icon: Icon(
+                            Icons.search,
+                            color: Colors.white70,
+                            size: 32,
+                          ),
+                        ),
+                        IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.notifications,
+                            color: Colors.white70,
+                            size: 32,
+                          ),
+                        ),
+                        IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.android,
+                            color: Colors.white70,
+                            size: 32,
                           ),
                         ),
                       ],
                     ),
-                    SizedBox(width: 10),
-                    Text(
-                      "Hi, User",
-                      style: TextStyle(fontSize: 20, color: Colors.white70),
-                    ),
                   ],
-                ),
-                Spacer(),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    IconButton(
-                      onPressed: () {
-                        Get.to(Search());
-                      },
-                      icon: Icon(Icons.search, color: Colors.white70, size: 32),
-                    ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.notifications,
-                        color: Colors.white70,
-                        size: 32,
-                      ),
-                    ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.android,
-                        color: Colors.white70,
-                        size: 32,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            );
-          }
+                );
+              }
 
-          return Text(
-            _titles[index],
-            style: TextStyle(color: Colors.white, fontSize: 22),
-          );
-        }),
+              return Text(
+                _titles[index],
+                style: TextStyle(color: Colors.white, fontSize: 22),
+              );
+            }),
+          ),
+
+          SliverToBoxAdapter(
+            child: Obx(() {
+              return _screens[navController.selectedIndex.value];
+            }),
+          ),
+        ],
       ),
-      body: Obx(() {
-        return _screens[navController.selectedIndex.value];
-      }),
 
       bottomNavigationBar: Obx(
         () => GNav(

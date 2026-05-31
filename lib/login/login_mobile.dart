@@ -1,11 +1,8 @@
 import 'package:esewa_ui_practice/controller/auth_controller.dart';
-import 'package:esewa_ui_practice/home/home.dart';
-import 'package:esewa_ui_practice/login/form_field_section.dart';
 import 'package:esewa_ui_practice/login/logoSection.dart';
 import 'package:esewa_ui_practice/login/mobile_email_section.dart';
 import 'package:esewa_ui_practice/login/welcomeSection.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 class LoginMobile extends StatefulWidget {
@@ -16,7 +13,6 @@ class LoginMobile extends StatefulWidget {
 }
 
 class _LoginMobileState extends State<LoginMobile> {
-  final bool _checkRemember = true;
   final TextEditingController mobilecontroller = TextEditingController();
   final TextEditingController pincontroller = TextEditingController();
   final TextEditingController emailcontroller = TextEditingController();
