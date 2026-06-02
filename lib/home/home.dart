@@ -17,9 +17,9 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   final BottomNavController navController = Get.put(BottomNavController());
-  final List<String> _titles = ["", "Statement", "Help and Support", "More"];
+  final List<String> _titles = ["", "Statement", "Help and Support", "Menu"];
 
-  final List<Widget> _screens = [HomeContent(), Statement(), Support(), More()];
+  final List<Widget> _screens = [HomeContent(), Statement(), Support(), Menu()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(

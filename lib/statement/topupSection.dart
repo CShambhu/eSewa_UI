@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class topupSection extends StatelessWidget {
-  const topupSection({super.key});
+class TopupSection extends StatelessWidget {
+  const TopupSection({super.key});
 
   @override
   Widget build(BuildContext context) {

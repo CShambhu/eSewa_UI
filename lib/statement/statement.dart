@@ -65,7 +65,7 @@ class Statement extends StatelessWidget {
               //TOPUP balance card
               Padding(
                 padding: const EdgeInsets.only(left: 15, top: 230, right: 15),
-                child: topupSection(),
+                child: TopupSection(),
               ),
               //TOPUP balance card end
             ],
