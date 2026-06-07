@@ -1,4 +1,8 @@
 import 'package:esewa_ui_practice/controller/auth_controller.dart';
+import 'package:esewa_ui_practice/controller/hidden_controller.dart';
+import 'package:esewa_ui_practice/controller/remember_me_controller.dart';
+import 'package:esewa_ui_practice/core/constant/app_colors.dart';
+import 'package:esewa_ui_practice/core/constant/app_text_styles.dart';
 import 'package:esewa_ui_practice/home/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -11,7 +15,7 @@ class FormFields extends StatelessWidget {
     required this.controller,
     required this.mobilecontroller,
     required this.emailcontroller,
-    required this.Bcontroller,
+    required this.hiddenController,
     required this.pincontroller,
     required this.checkController,
   }) : _formkey = formkey;
@@ -20,7 +24,7 @@ class FormFields extends StatelessWidget {
   final AuthController controller;
   final TextEditingController mobilecontroller;
   final TextEditingController emailcontroller;
-  final HiddenController Bcontroller;
+  final HiddenController hiddenController;
   final TextEditingController pincontroller;
   final CheckController checkController;
 
@@ -31,7 +35,7 @@ class FormFields extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("eSewa ID", style: TextStyle(fontSize: 16, color: Colors.white)),
+          Text("eSewa ID", style: AppTextStyles.listItemTitle),
           Obx(() {
             if (controller.isMobilelogin.value) {
               return TextFormField(
@@ -41,10 +45,10 @@ class FormFields extends StatelessWidget {
                 controller: mobilecontroller,
                 decoration: InputDecoration(
                   filled: true,
-                  fillColor: Color.fromARGB(255, 62, 81, 90),
+                  fillColor: AppColors.inputFill,
                   hintText: "Mobile Number",
 
-                  hintStyle: TextStyle(color: Colors.white),
+                  hintStyle: TextStyle(color: AppColors.textPrimary),
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty || value.length != 10) {
@@ -61,9 +65,9 @@ class FormFields extends StatelessWidget {
                 autovalidateMode: AutovalidateMode.onUserInteractionIfError,
                 decoration: InputDecoration(
                   filled: true,
-                  fillColor: Color.fromARGB(255, 62, 81, 90),
+                  fillColor: AppColors.inputFill,
                   hintText: "Email Address",
-                  hintStyle: TextStyle(color: Colors.white),
+                  hintStyle: TextStyle(color: AppColors.textPrimary),
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -79,31 +83,28 @@ class FormFields extends StatelessWidget {
             }
           }),
           SizedBox(height: 20),
-          Text(
-            "MPIN/Password",
-            style: TextStyle(fontSize: 17, color: Colors.white),
-          ),
+          Text("MPIN/Password", style: AppTextStyles.loginBody),
           Obx(() {
             return TextFormField(
-              obscureText: Bcontroller.isHidden.value,
+              obscureText: hiddenController.isHidden.value,
               autovalidateMode: AutovalidateMode.onUserInteractionIfError,
               controller: pincontroller,
               decoration: InputDecoration(
                 filled: true,
-                fillColor: Color.fromARGB(255, 62, 81, 90),
+                fillColor: AppColors.inputFill,
                 suffixIcon: IconButton(
                   onPressed: () {
-                    Bcontroller.toggleHidden();
+                    hiddenController.toggleHidden();
                   },
                   icon: Icon(
-                    Bcontroller.isHidden.value
+                    hiddenController.isHidden.value
                         ? Icons.visibility_off
                         : Icons.visibility,
-                    color: Colors.white,
+                    color: AppColors.textPrimary,
                   ),
                 ),
                 hintText: "Your 4-digit MPIN/Password",
-                hintStyle: TextStyle(color: Colors.white),
+                hintStyle: TextStyle(color: AppColors.textPrimary),
               ),
               validator: (value) {
                 if (value == null || value.isEmpty || value.length != 4) {
@@ -128,17 +129,23 @@ class FormFields extends StatelessWidget {
                       },
                     );
                   }),
-                  Text("Remember me", style: TextStyle(color: Colors.white)),
+                  Text(
+                    "Remember me",
+                    style: TextStyle(color: AppColors.textPrimary),
+                  ),
                 ],
               ),
-              Text("Forgot MPIN?", style: TextStyle(color: Colors.white)),
+              Text(
+                "Forgot MPIN?",
+                style: TextStyle(color: AppColors.textPrimary),
+              ),
             ],
           ),
 
           ElevatedButton(
             style: ElevatedButton.styleFrom(
               minimumSize: Size(350, 50),
-              backgroundColor: Colors.green,
+              backgroundColor: AppColors.success,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
               ),
@@ -154,24 +161,24 @@ class FormFields extends StatelessWidget {
                 ).showSnackBar(SnackBar(content: Text("Login Successfull")));
               }
             },
-            child: Text(
-              "Login",
-              style: TextStyle(fontSize: 17, color: Colors.white),
-            ),
+            child: Text("Login", style: AppTextStyles.loginBody),
           ),
           SizedBox(height: 20),
 
           Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
-              border: Border.all(color: Colors.white, width: 1),
+              border: Border.all(color: AppColors.textPrimary, width: 1),
             ),
 
             child: Padding(
               padding: const EdgeInsets.all(5.0),
               child: Row(
                 children: [
-                  Icon(Icons.phone_in_talk_outlined, color: Colors.white),
+                  Icon(
+                    Icons.phone_in_talk_outlined,
+                    color: AppColors.textPrimary,
+                  ),
                   SizedBox(width: 5),
 
                   Column(
@@ -179,10 +186,10 @@ class FormFields extends StatelessWidget {
                     children: [
                       Text(
                         "24*7 Help & Support",
-                        style: TextStyle(fontSize: 13, color: Colors.white),
+                        style: AppTextStyles.loginSmall,
                       ),
                       Text(
-                        style: TextStyle(fontSize: 13, color: Colors.white),
+                        style: AppTextStyles.loginSmall,
                         "Get quick solutions for eSewa-related queries.",
                       ),
                     ],
@@ -193,12 +200,7 @@ class FormFields extends StatelessWidget {
           ),
           SizedBox(height: 60),
 
-          Center(
-            child: Text(
-              "Register",
-              style: TextStyle(fontSize: 17, color: Colors.green),
-            ),
-          ),
+          Center(child: Text("Register", style: AppTextStyles.loginAction)),
           SizedBox(height: 20),
         ],
       ),

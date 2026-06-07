@@ -1,3 +1,5 @@
+import 'package:esewa_ui_practice/core/constant/app_colors.dart';
+import 'package:esewa_ui_practice/core/constant/app_text_styles.dart';
 import 'package:flutter/material.dart';
 
 class CardSectionII extends StatelessWidget {
@@ -17,15 +19,12 @@ class CardSectionII extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              "Help & FAQs",
-              style: TextStyle(fontSize: 16, color: Colors.white70),
-            ),
+            Text("Help & FAQs", style: AppTextStyles.loginBody),
             Container(
               // height: 150,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
-                color: const Color.fromARGB(255, 59, 86, 95),
+                color: AppColors.container,
               ),
               child: Padding(
                 padding: const EdgeInsets.all(15),
@@ -44,27 +43,18 @@ class CardSectionII extends StatelessWidget {
                               Text(
                                 "My eSewa Account is Temporarily Blocked.",
                                 maxLines: 2,
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  color: Colors.white70,
-                                ),
+                                style: AppTextStyles.statementLabel,
                               ),
                               Text(
                                 "If there is a log in attempt in your account  with wrong MPIN, you ID will be temporarily blocked for security reasons.",
                                 maxLines: 3,
                                 textAlign: TextAlign.left,
-                                style: TextStyle(
-                                  fontSize: 13,
-                                  color: Colors.white70,
-                                ),
+                                style: AppTextStyles.gridLabel,
                               ),
                               SizedBox(height: 10),
                               Text(
                                 "VIEW DETAILS",
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.green,
-                                ),
+                                style: AppTextStyles.viewALl,
                               ),
                             ],
                           ),

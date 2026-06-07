@@ -1,5 +1,6 @@
-import 'package:esewa_ui_practice/controller/auth_controller.dart';
-import 'package:esewa_ui_practice/home/widgets/HomeContent.dart';
+import 'package:esewa_ui_practice/controller/bottom_nav_controller.dart';
+import 'package:esewa_ui_practice/core/constant/app_colors.dart';
+import 'package:esewa_ui_practice/home/widgets/home_content.dart';
 import 'package:esewa_ui_practice/more/more.dart';
 import 'package:esewa_ui_practice/search.dart';
 import 'package:esewa_ui_practice/statement/statement.dart';
@@ -23,12 +24,12 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(221, 17, 17, 17),
+      backgroundColor: AppColors.scaffoldBg,
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
             floating: false,
-            backgroundColor: const Color.fromARGB(255, 38, 51, 56),
+            backgroundColor: AppColors.appBarBg,
 
             // expandedHeight: 150,
             title: Obx(() {
@@ -126,7 +127,7 @@ class _HomeState extends State<Home> {
           selectedIndex: navController.selectedIndex.value,
           padding: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
           // tabBackgroundColor: Colors.grey,
-          backgroundColor: const Color.fromARGB(255, 28, 37, 41),
+          backgroundColor: AppColors.navBg,
           activeColor: Colors.blueGrey,
           color: Colors.white,
           style: GnavStyle.oldSchool,

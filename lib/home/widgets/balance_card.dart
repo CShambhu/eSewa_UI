@@ -1,4 +1,5 @@
-import 'package:esewa_ui_practice/controller/auth_controller.dart';
+import 'package:esewa_ui_practice/controller/hidden_controller.dart';
+import 'package:esewa_ui_practice/core/constant/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -37,7 +38,7 @@ class _BalancecardState extends State<Balancecard> {
                 topRight: Radius.circular(20),
               ),
             ),
-            color: const Color.fromARGB(221, 17, 17, 17),
+            color: AppColors.scaffoldBg,
             child: Padding(
               padding: const EdgeInsets.only(left: 10, top: 4, bottom: 4),
               child: Row(

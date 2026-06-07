@@ -1,3 +1,5 @@
+import 'package:esewa_ui_practice/core/constant/app_colors.dart';
+import 'package:esewa_ui_practice/core/constant/app_text_styles.dart';
 import 'package:esewa_ui_practice/support/card_widgets.dart';
 import 'package:flutter/material.dart';
 
@@ -7,11 +9,11 @@ class CardSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 490,
+      height: 500,
       width: double.infinity,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
-        color: const Color.fromARGB(255, 59, 86, 95),
+        color: AppColors.container,
       ),
       child: Padding(
         padding: const EdgeInsets.all(12.0),
@@ -20,7 +22,7 @@ class CardSection extends StatelessWidget {
           children: [
             Text(
               "Choose a service you need help with",
-              style: TextStyle(fontSize: 16, color: Colors.white70),
+              style: AppTextStyles.sectionTitle,
             ),
             GridView.count(
               padding: EdgeInsets.only(top: 15),
@@ -56,12 +58,7 @@ class CardSection extends StatelessWidget {
 
             Divider(),
             const SizedBox(height: 20),
-            Center(
-              child: Text(
-                "View All",
-                style: TextStyle(fontSize: 20, color: Colors.green),
-              ),
-            ),
+            Center(child: Text("View All", style: AppTextStyles.viewALl)),
           ],
         ),
       ),

@@ -1,5 +1,5 @@
-import 'package:esewa_ui_practice/statement/balanceSection.dart';
-import 'package:esewa_ui_practice/statement/topupSection.dart';
+import 'package:esewa_ui_practice/statement/balance_section.dart';
+import 'package:esewa_ui_practice/statement/topup_section.dart';
 import 'package:flutter/material.dart';
 
 class Statement extends StatelessWidget {

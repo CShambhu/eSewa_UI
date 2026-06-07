@@ -1,7 +1,10 @@
 import 'package:esewa_ui_practice/controller/auth_controller.dart';
+import 'package:esewa_ui_practice/controller/hidden_controller.dart';
+import 'package:esewa_ui_practice/controller/remember_me_controller.dart';
+import 'package:esewa_ui_practice/core/constant/app_colors.dart';
 import 'package:esewa_ui_practice/login/logoSection.dart';
 import 'package:esewa_ui_practice/login/mobile_email_section.dart';
-import 'package:esewa_ui_practice/login/welcomeSection.dart';
+import 'package:esewa_ui_practice/login/welcome_section.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -19,13 +22,13 @@ class _LoginMobileState extends State<LoginMobile> {
   final _formkey = GlobalKey<FormState>();
 
   final AuthController controller = Get.put(AuthController());
-  final HiddenController Bcontroller = Get.put(HiddenController());
+  final HiddenController hiddenController = Get.put(HiddenController());
   final CheckController checkController = Get.put(CheckController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: AppColors.scaffoldBg,
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -44,7 +47,7 @@ class _LoginMobileState extends State<LoginMobile> {
               formkey: _formkey,
               mobilecontroller: mobilecontroller,
               emailcontroller: emailcontroller,
-              Bcontroller: Bcontroller,
+              hiddenController: hiddenController,
               pincontroller: pincontroller,
               checkController: checkController,
             ),

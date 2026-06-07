@@ -1,4 +1,8 @@
 import 'package:esewa_ui_practice/controller/auth_controller.dart';
+import 'package:esewa_ui_practice/controller/hidden_controller.dart';
+import 'package:esewa_ui_practice/controller/remember_me_controller.dart';
+import 'package:esewa_ui_practice/core/constant/app_colors.dart';
+import 'package:esewa_ui_practice/core/constant/app_text_styles.dart';
 import 'package:esewa_ui_practice/login/form_field_section.dart';
 import 'package:flutter/material.dart';
 
@@ -9,7 +13,7 @@ class MobileEmail extends StatelessWidget {
     required GlobalKey<FormState> formkey,
     required this.mobilecontroller,
     required this.emailcontroller,
-    required this.Bcontroller,
+    required this.hiddenController,
     required this.pincontroller,
     required this.checkController,
   }) : _formkey = formkey;
@@ -18,7 +22,7 @@ class MobileEmail extends StatelessWidget {
   final GlobalKey<FormState> _formkey;
   final TextEditingController mobilecontroller;
   final TextEditingController emailcontroller;
-  final HiddenController Bcontroller;
+  final HiddenController hiddenController;
   final TextEditingController pincontroller;
   final CheckController checkController;
 
@@ -26,7 +30,7 @@ class MobileEmail extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       margin: EdgeInsets.all(0),
-      color: Color.fromARGB(255, 49, 64, 71),
+      color: AppColors.cardBg,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadiusGeometry.only(
           topLeft: Radius.circular(30),
@@ -45,19 +49,13 @@ class MobileEmail extends StatelessWidget {
                   onPressed: () {
                     controller.showMobileLogin();
                   },
-                  child: Text(
-                    "Mobile Number",
-                    style: TextStyle(fontSize: 17, color: Colors.white),
-                  ),
+                  child: Text("Mobile Number", style: AppTextStyles.loginBody),
                 ),
                 TextButton(
                   onPressed: () {
                     controller.showEmailLogin();
                   },
-                  child: Text(
-                    "Email Address",
-                    style: TextStyle(fontSize: 17, color: Colors.white),
-                  ),
+                  child: Text("Email Address", style: AppTextStyles.loginBody),
                 ),
               ],
             ),
@@ -70,7 +68,7 @@ class MobileEmail extends StatelessWidget {
               controller: controller,
               mobilecontroller: mobilecontroller,
               emailcontroller: emailcontroller,
-              Bcontroller: Bcontroller,
+              hiddenController: hiddenController,
               pincontroller: pincontroller,
               checkController: checkController,
             ),

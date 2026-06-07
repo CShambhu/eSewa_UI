@@ -1,3 +1,4 @@
+import 'package:esewa_ui_practice/core/constant/app_text_styles.dart';
 import 'package:flutter/material.dart';
 
 Widget Utility(IconData icon, String title) {
@@ -8,13 +9,13 @@ Widget Utility(IconData icon, String title) {
       const SizedBox(height: 5),
 
       SizedBox(
-        height: 36,
+        height: 37,
         child: Text(
           title,
           textAlign: TextAlign.center,
           maxLines: 2,
           overflow: TextOverflow.ellipsis,
-          style: const TextStyle(color: Colors.white70, fontSize: 13),
+          style: AppTextStyles.widgetIconsText,
         ),
       ),
     ],

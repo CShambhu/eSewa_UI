@@ -1,8 +1,8 @@
-import 'package:esewa_ui_practice/home/widgets/BalanceCard.dart';
-import 'package:esewa_ui_practice/home/widgets/FinancialCardSection.dart';
-import 'package:esewa_ui_practice/home/widgets/InsuranceCardSection.dart';
-import 'package:esewa_ui_practice/home/widgets/TravelsCardSection.dart';
-import 'package:esewa_ui_practice/home/widgets/UtilityCardSection.dart';
+import 'package:esewa_ui_practice/home/widgets/balance_card.dart';
+import 'package:esewa_ui_practice/home/widgets/financial_card_section.dart';
+import 'package:esewa_ui_practice/home/widgets/insurance_card_section.dart';
+import 'package:esewa_ui_practice/home/widgets/travels_card_section.dart';
+import 'package:esewa_ui_practice/home/widgets/utility_card_section.dart';
 import 'package:flutter/material.dart';
 
 class HomeContent extends StatelessWidget {

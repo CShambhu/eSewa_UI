@@ -1,5 +1,7 @@
+import 'package:esewa_ui_practice/core/constant/app_colors.dart';
+import 'package:esewa_ui_practice/core/constant/app_text_styles.dart';
 import 'package:flutter/material.dart';
-import 'UtilityWidgets.dart';
+import 'utility_widgets.dart';
 
 class TravelsCardSection extends StatelessWidget {
   const TravelsCardSection({super.key});
@@ -9,25 +11,19 @@ class TravelsCardSection extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(left: 5, right: 5),
       child: Card(
-        color: const Color.fromARGB(255, 28, 37, 41),
+        color: AppColors.cardBg,
         child: Padding(
           padding: const EdgeInsets.only(left: 12, top: 5, right: 12),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                "Travels & Ticketing",
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.white70,
-                ),
-              ),
+              Text("Travels & Ticketing", style: AppTextStyles.sectionTitle),
               GridView.count(
                 crossAxisCount: 4,
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 crossAxisSpacing: 20,
+                padding: EdgeInsets.zero,
                 children: [
                   Utility(Icons.flight, "Airlines"),
                   Utility(Icons.flight_takeoff, "Intl Airlines"),
@@ -40,10 +36,10 @@ class TravelsCardSection extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: const [
                       CircleAvatar(
-                        backgroundColor: Color.fromARGB(255, 57, 75, 83),
+                        backgroundColor: AppColors.circleAvatar,
                         child: Icon(
                           Icons.arrow_forward_ios,
-                          color: Colors.green,
+                          color: AppColors.success,
                         ),
                       ),
                     ],
